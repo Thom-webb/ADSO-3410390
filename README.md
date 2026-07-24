@@ -1,5 +1,5 @@
 # ADSO-3410390
-![My picture](src/imgs/yoo.jpeg)
+![My picture](/imgs/yoo.jpeg)
 ## Thomas toro cuervo
 ### Analisis y desarrollo de software
 **Centro de procesos Industriales y construccion**
