@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-layout</title>
+    <link rel="stylesheet" href="src/css/master.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url(src/imgs/asoso.jpg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ============ BURBUJAS FLOTANTES DEL FONDO ============ */
+        .bubbles {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bubbles span {
+            position: absolute;
+            bottom: -150px;
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.35) 15%, transparent 40%),
+                radial-gradient(circle at 70% 75%, rgba(180, 240, 255, 0.5) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(200, 240, 255, 0.15) 0%, rgba(120, 200, 240, 0.25) 70%, rgba(80, 170, 220, 0.4) 100%);
+
+            border: 1px solid rgba(255, 255, 255, 0.7);
+
+            box-shadow:
+                inset 0 0 20px rgba(255, 255, 255, 0.7),
+                inset -5px -5px 20px rgba(120, 220, 255, 0.4),
+                0 0 30px rgba(150, 230, 255, 0.5);
+
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+
+            animation: rise linear infinite;
+        }
+
+        .bubbles span::before {
+            content: '';
+            position: absolute;
+            top: 12%;
+            left: 18%;
+            width: 45%;
+            height: 30%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            transform: rotate(-25deg);
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            50% { transform: translateY(-50vh) translateX(30px) scale(1.05); }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-110vh) translateX(-20px) scale(0.9);
+                opacity: 0;
+            }
+        }
+
+        .bubbles span:nth-child(1)  { left: 5%;  width: 40px;  height: 40px;  animation-duration: 14s; animation-delay: 0s; }
+        .bubbles span:nth-child(2)  { left: 12%; width: 80px;  height: 80px;  animation-duration: 20s; animation-delay: 2s; }
+        .bubbles span:nth-child(3)  { left: 22%; width: 25px;  height: 25px;  animation-duration: 12s; animation-delay: 4s; }
+        .bubbles span:nth-child(4)  { left: 32%; width: 60px;  height: 60px;  animation-duration: 18s; animation-delay: 1s; }
+        .bubbles span:nth-child(5)  { left: 42%; width: 100px; height: 100px; animation-duration: 24s; animation-delay: 3s; }
+        .bubbles span:nth-child(6)  { left: 52%; width: 35px;  height: 35px;  animation-duration: 15s; animation-delay: 5s; }
+        .bubbles span:nth-child(7)  { left: 62%; width: 70px;  height: 70px;  animation-duration: 22s; animation-delay: 0.5s; }
+        .bubbles span:nth-child(8)  { left: 72%; width: 50px;  height: 50px;  animation-duration: 17s; animation-delay: 3.5s; }
+        .bubbles span:nth-child(9)  { left: 82%; width: 90px;  height: 90px;  animation-duration: 26s; animation-delay: 1.5s; }
+        .bubbles span:nth-child(10) { left: 92%; width: 30px;  height: 30px;  animation-duration: 13s; animation-delay: 6s; }
+        .bubbles span:nth-child(11) { left: 48%; width: 20px;  height: 20px;  animation-duration: 11s; animation-delay: 7s; }
+        .bubbles span:nth-child(12) { left: 18%; width: 55px;  height: 55px;  animation-duration: 19s; animation-delay: 4.5s; }
+
+        /* ============ CONTENIDO PRINCIPAL (PANEL DE VIDRIO) ============ */
+        main {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 40px;
+
+            background:
+                radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 90%, rgba(120, 240, 180, 0.25) 0%, transparent 60%),
+                linear-gradient(
+                    145deg,
+                    rgba(120, 230, 160, 0.35) 0%,
+                    rgba(80, 200, 150, 0.25) 40%,
+                    rgba(60, 180, 130, 0.35) 100%
+                );
+
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 40px;
+
+            backdrop-filter: blur(18px) saturate(1.6);
+            -webkit-backdrop-filter: blur(18px) saturate(1.6);
+
+            box-shadow:
+                inset 0 2px 6px rgba(255, 255, 255, 0.8),
+                inset 0 -4px 15px rgba(0, 130, 90, 0.3),
+                inset -10px -10px 40px rgba(80, 200, 150, 0.25),
+                0 15px 45px rgba(0, 80, 60, 0.4),
+                0 0 60px rgba(120, 240, 180, 0.35);
+
+            overflow: hidden;
+        }
+
+        main::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 5%;
+            right: 5%;
+            height: 120px;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.55) 0%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            border-radius: 40px 40px 50% 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        main::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            right: 10%;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(160, 255, 200, 0.4) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ============ HEADER ============ */
+        header {
+            position: relative;
+            text-align: center;
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0, 60, 40, 0.8);
+            width: 100%;
+            padding-top: 90px;
+            padding-left: 100px;
+            padding-right: 100px;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+
+        header h2, header h3, header h4, header h5 {
+            font-weight: 500;
+            margin: 4px 0;
+        }
+
+        /* ============ BOTÓN DE VOLVER (burbuja pequeña, izquierda) ============ */
+        header > a:is(:link, :visited) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            text-decoration: none;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 18%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(150, 230, 255, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(200, 240, 255, 0.15) 0%, rgba(120, 200, 240, 0.25) 70%, rgba(80, 170, 220, 0.45) 100%);
+
+            border: 2px solid rgba(255, 255, 255, 0.75);
+
+            box-shadow:
+                inset 0 0 15px rgba(255, 255, 255, 0.6),
+                inset -6px -6px 15px rgba(100, 200, 255, 0.4),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.4),
+                0 5px 15px rgba(0, 100, 180, 0.35),
+                0 0 25px rgba(120, 220, 255, 0.5);
+
+            backdrop-filter: blur(3px) saturate(1.4);
+            -webkit-backdrop-filter: blur(3px) saturate(1.4);
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: float 6s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        header > a:is(:link, :visited)::before {
+            content: '';
+            position: absolute;
+            top: 8%;
+            left: 18%;
+            width: 55%;
+            height: 40%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header > a:is(:link, :visited)::after {
+            content: '';
+            position: absolute;
+            bottom: 12%;
+            right: 22%;
+            width: 25%;
+            height: 15%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header > a:is(:link, :visited) img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            z-index: 3;
+            position: relative;
+            filter: drop-shadow(0 2px 4px rgba(0, 80, 130, 0.6));
+        }
+
+        header > a:is(:link, :visited):hover {
+            transform: scale(1.12);
+            box-shadow:
+                inset 0 0 20px rgba(255, 255, 255, 0.9),
+                inset -6px -6px 20px rgba(120, 220, 255, 0.6),
+                inset 6px 6px 15px rgba(255, 255, 255, 0.6),
+                0 8px 20px rgba(0, 120, 200, 0.55),
+                0 0 45px rgba(150, 240, 255, 0.9);
+        }
+
+        header > a:is(:link, :visited):active {
+            transform: scale(0.95);
+        }
+
+        /* ============ FOTO DE PERFIL EN BURBUJA ============ */
+        header > img[alt="my profile"] {
+            display: block;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 3;
+
+            border: 4px solid rgba(255, 255, 255, 0.85);
+
+            box-shadow:
+                inset 0 0 30px rgba(255, 255, 255, 0.5),
+                inset -10px -10px 30px rgba(100, 200, 255, 0.5),
+                inset 10px 10px 25px rgba(255, 255, 255, 0.4),
+                0 10px 30px rgba(0, 100, 180, 0.5),
+                0 0 50px rgba(150, 230, 255, 0.7);
+
+            animation: float 7s ease-in-out infinite;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 258px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-20deg);
+            width: 90px;
+            height: 55px;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 4;
+            opacity: 0.85;
+        }
+
+        /* ============ IFRAME DE FIGMA ESTILO FRUTIGER AERO ============ */
+        main iframe {
+            position: relative;
+            z-index: 2;
+            width: 600px;          /* ← Más angosto (antes 800px) */
+            max-width: 100%;
+            height: 450px;
+            border: 2px solid rgba(255, 255, 255, 0.75) !important;
+            border-radius: 25px;
+            box-shadow:
+                inset 0 2px 6px rgba(255, 255, 255, 0.6),
+                inset -6px -6px 20px rgba(100, 200, 255, 0.3),
+                0 10px 30px rgba(0, 80, 60, 0.4),
+                0 0 40px rgba(120, 240, 180, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            overflow: hidden;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        /* ============ MENÚ (por si lo usas) ============ */
+        menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            background: transparent;
+            z-index: 2;
+        }
+
+        menu a:is(:link, :visited) {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 18px 40px;
+            min-width: 220px;
+            border-radius: 100px;
+            text-decoration: none;
+            color: #ffffff;
+            overflow: hidden;
+
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 18%, transparent 45%),
+                radial-gradient(ellipse at 80% 85%, rgba(150, 230, 255, 0.4) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, rgba(200, 240, 255, 0.15) 0%, rgba(120, 200, 240, 0.25) 70%, rgba(80, 170, 220, 0.45) 100%);
+
+            border: 2px solid rgba(255, 255, 255, 0.75);
+
+            box-shadow:
+                inset 0 0 30px rgba(255, 255, 255, 0.6),
+                inset -10px -10px 30px rgba(100, 200, 255, 0.4),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.4),
+                0 8px 25px rgba(0, 100, 180, 0.35),
+                0 0 40px rgba(120, 220, 255, 0.5);
+
+            backdrop-filter: blur(4px) saturate(1.4);
+            -webkit-backdrop-filter: blur(4px) saturate(1.4);
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        menu a:is(:link, :visited)::before {
+            content: '';
+            position: absolute;
+            top: 6%;
+            left: 8%;
+            width: 70%;
+            height: 45%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            transform: rotate(-10deg);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        menu a:is(:link, :visited)::after {
+            content: '';
+            position: absolute;
+            bottom: 10%;
+            right: 12%;
+            width: 20%;
+            height: 18%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        menu a:is(:link, :visited):nth-child(1) { animation-delay: 0s; }
+        menu a:is(:link, :visited):nth-child(2) { animation-delay: 0.8s; }
+        menu a:is(:link, :visited):nth-child(3) { animation-delay: 1.6s; }
+        menu a:is(:link, :visited):nth-child(4) { animation-delay: 2.4s; }
+        menu a:is(:link, :visited):nth-child(5) { animation-delay: 3.2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        menu a:is(:link, :visited):hover {
+            transform: scale(1.08);
+            box-shadow:
+                inset 0 0 40px rgba(255, 255, 255, 0.9),
+                inset -10px -10px 40px rgba(120, 220, 255, 0.6),
+                inset 10px 10px 30px rgba(255, 255, 255, 0.6),
+                0 12px 35px rgba(0, 120, 200, 0.55),
+                0 0 70px rgba(150, 240, 255, 0.9);
+        }
+
+        menu a:is(:link, :visited):active {
+            transform: scale(0.96);
+        }
+
+        menu a:is(:link, :visited) span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow:
+                0 2px 4px rgba(0, 80, 130, 0.7),
+                0 0 15px rgba(255, 255, 255, 0.9);
+            z-index: 3;
+            background: transparent;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        menu a:is(:link, :visited) aside {
+            position: relative;
+            z-index: 3;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        menu a:is(:link, :visited) aside h3 {
+            font-size: 0.95rem;
+            color: #ffffff;
+            text-shadow:
+                0 2px 4px rgba(0, 80, 130, 0.8),
+                0 0 10px rgba(0, 150, 200, 0.6);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        menu a:is(:link, :visited) aside small {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 3px rgba(0, 80, 130, 0.8);
+        }
+
+        body > img:first-of-type {
+            display: none;
+        }
+    </style>
+</head>
+<body class="mainmenu">
+
+    <div class="bubbles">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
+
+    <img src="src/img/9cca5edb-1022-4c90-9343-b7fb30aebfd8.png" width="" alt="">
+   <main>
+    
+    <header>
+        <a href="index.html"><img src="src/img/9cca5edb-1022-4c90-9343-b7fb30aebfd8.png" width="" alt=""></a>
+        <h1>mockup</h1>
+        
+    </header>
+   <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/Y454AguWaXxVQnoT9oOpR3/Sin-t%C3%ADtulo?node-id=26-2&embed-host=share" allowfullscreen></iframe>
+</body>
+</html>
