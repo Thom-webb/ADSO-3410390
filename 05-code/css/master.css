@@ -35,19 +35,19 @@ header#navbar {
     display: flex;
     position: fixed;
     background-size: cover;
-    left: 0px;
+    left: 0;
     height: 100px;
     justify-content: space-between;
     padding-left: 2rem;
     padding-right: 7rem;
-    top: 0px;
+    top: 0;
     width: 100%;
     z-index: 100;
 }
 
 header#navbar img.logo {
     height: 80px;
-    filter: drop-shadow(0px 4px 6px rgba(247, 189, 1, 0.7));
+    filter: drop-shadow(0 4px 6px rgba(247, 189, 1, 0.7));
 }
 
 header#navbar nav.options {
@@ -154,7 +154,8 @@ section#COLECCIONES {
     border: none;
 }
 
-.juego:hover, .juego:focus-visible {
+.juego:hover,
+.juego:focus-visible {
     transform: scale(1.05);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 22px rgba(239, 188, 52, 0.65);
     z-index: 2;
@@ -164,14 +165,6 @@ section#COLECCIONES {
    05 - TEMPLOS
    ========================================= */
 section#TEMPLOS {
-    background-image: url(../img/Templos-FONDO.png);
-    background-size: 130% 130%; 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; 
-    background-position: center 80px;
-    z-index: 10;
-
     position: relative;
     width: 100%;
     padding: 80px 0 120px 0;
@@ -179,6 +172,10 @@ section#TEMPLOS {
     flex-direction: column;
     align-items: center;
     z-index: 10;
+    background-image: url(../img/Templos-FONDO.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 80px;
 }
 
 .titulo-seccion {
@@ -204,7 +201,7 @@ section#TEMPLOS {
 .mapa-wrapper {
     flex: 1;
     overflow: hidden;
-    line-height: 0; 
+    line-height: 0;
 }
 
 .mapa-img {
@@ -219,11 +216,11 @@ section#TEMPLOS {
     background-repeat: no-repeat;
     background-position: center;
     background-color: transparent;
-    width: 70px;                  
-    height: 70px;                 
+    width: 70px;
+    height: 70px;
     border: none;
     cursor: pointer;
-    padding: 0;                   
+    padding: 0;
     flex-shrink: 0;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
@@ -233,19 +230,18 @@ section#TEMPLOS {
 .flecha-derecha { background-image: url('../img/flecha2.png'); }
 .flecha-derecha:hover { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
 
-
 /* =========================================
    06 - SECCIÓN VERDE (CARRUSEL DE RECETAS)
    ========================================= */
 section#verde {
-    position: relative; 
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -142px; 
-    z-index: 5; 
+    margin-top: -142px;
+    z-index: 5;
     width: 100%;
-    padding-bottom: 50px; 
+    padding-bottom: 50px;
 }
 
 .barra-verde-fondo {
@@ -258,11 +254,11 @@ section#verde {
 
 .titulo-recetas {
     position: absolute;
-    top: 170px; 
-    left: 20px; 
+    top: 170px;
+    left: 20px;
     font-family: var(--font-headings);
     font-size: 3.5rem;
-    color: #257657; 
+    color: #257657;
     text-transform: uppercase;
     letter-spacing: 4px;
     margin: 0;
@@ -278,13 +274,13 @@ section#verde {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; 
+    gap: 20px;
     width: 100%;
     max-width: 1000px;
 }
 
 .carta-receta {
-    width: 250px; 
+    width: 250px;
     transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
     cursor: pointer;
 }
@@ -296,28 +292,28 @@ section#verde {
 }
 
 .carta-receta:not(.activa) {
-    transform: scale(0.85); 
-    filter: brightness(0.6); 
+    transform: scale(0.85);
+    filter: brightness(0.6);
     opacity: 0.8;
 }
 
 .carta-receta:not(.activa):hover {
-    transform: scale(0.9); 
+    transform: scale(0.9);
     filter: brightness(0.8);
     opacity: 1;
 }
 
 .carta-receta.activa {
-    transform: scale(1.02); 
+    transform: scale(1.02);
     z-index: 20;
-    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.4)); 
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
 }
 
 .flecha-carrusel {
     position: absolute;
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
-    background-image: url('../img/flecha2.png'); 
+    background-image: url('../img/flecha2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -336,7 +332,7 @@ section#verde {
 .flecha-der-carrusel:hover { transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
 
 /* =========================================
-   07 - SECCIÓN FINAL (Fondo verde con Logo e Iconos)
+   07 - SECCIÓN FINAL (FONDO VERDE CON LOGO E ICONOS)
    ========================================= */
 section#VERDE-FINAL {
     position: relative;
@@ -344,7 +340,7 @@ section#VERDE-FINAL {
     display: flex;
     justify-content: center;
     z-index: 50;
-    margin-top: -328px; /* Sube la sección para quitar el borde blanco */
+    margin-top: -328px;
 }
 
 .fondo-final-img {
@@ -368,22 +364,22 @@ section#VERDE-FINAL {
 }
 
 .logo-final-img {
-    width: 400px; 
+    width: 400px;
     max-width: 90%;
     height: auto;
-    margin-bottom: 30px; 
-    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.6)); 
+    margin-bottom: 30px;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.6));
 }
 
 .barra-iconos-amarilla {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; 
+    justify-content: space-evenly;
     width: 100%;
     padding: 15px 25px;
-    background-color: #EFBC34; 
-    border-radius: 12px; 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+    background-color: #EFBC34;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 .icono-btn {
@@ -403,42 +399,42 @@ section#VERDE-FINAL {
 }
 
 .icono-btn:hover {
-    transform: scale(1.2) translateY(-5px); 
-    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.5));
+    transform: scale(1.2) translateY(-5px);
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
 }
 
 /* =========================================
    08 - MODAL DE VIDEO (COLECCIONES)
    ========================================= */
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.85); 
-    z-index: 9999; 
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px); 
+    backdrop-filter: blur(5px);
 }
 
 .modal-contenido {
     position: relative;
     width: 90%;
     max-width: 900px;
-    background-color: #094A34; 
-    border: 4px solid #EFBC34; 
+    background-color: #094A34;
+    border: 4px solid #EFBC34;
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 0 0 30px rgba(239, 188, 52, 0.5); 
+    box-shadow: 0 0 30px rgba(239, 188, 52, 0.5);
     animation: aparecer 0.3s ease-out;
 }
 
 @keyframes aparecer {
     from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    to   { transform: scale(1);   opacity: 1; }
 }
 
 .cerrar-modal {
@@ -456,7 +452,7 @@ section#VERDE-FINAL {
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     transition: transform 0.2s ease;
 }
 
@@ -466,7 +462,7 @@ section#VERDE-FINAL {
 
 .video-wrapper {
     position: relative;
-    padding-bottom: 56.25%; 
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 8px;
