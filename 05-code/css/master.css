@@ -87,16 +87,18 @@ header#navbar nav.options a:is(:link, :visited):hover::after {
     transform: scaleX(1);
 }
 
-/* --- NUEVO: Botón Hamburguesa (Oculto en PC) --- */
+/* --- NUEVO: Botón Hamburguesa (Oculto por defecto en PC) --- */
 .menu-toggle {
     display: none;
     background: transparent;
     border: none;
     color: #EFBC34;
-    font-size: 2.5rem;
+    font-size: 3rem; /* Un poco más grande para que se vea bien */
     cursor: pointer;
-    z-index: 101;
+    z-index: 999;
     text-shadow: 0 0 10px rgba(239, 188, 52, 0.8);
+    padding: 0;
+    line-height: 1;
 }
 
 /* =========================================
@@ -559,33 +561,35 @@ section#VERDE-FINAL {
 @media (max-width: 768px) {
     header#navbar {
         height: 70px;
-        justify-content: space-between; /* Cambiado para separar logo y hamburguesa */
-        padding: 0 1.5rem; /* Ajuste de padding */
+        justify-content: space-between; 
+        padding: 0 1.5rem; 
     }
     header#navbar img.logo {
         height: 50px;
     }
     
-    /* --- NUEVO: Mostrar botón hamburguesa en móvil --- */
-    .menu-toggle {
-        display: block;
+    /* --- CORRECCIÓN: Forzar la aparición del botón hamburguesa --- */
+    header#navbar .menu-toggle {
+        display: block !important; 
+        position: relative;
+        z-index: 1001;
     }
 
     /* --- NUEVO: Menú lateral desplegable en móvil --- */
     header#navbar nav.options {
         display: flex;
         flex-direction: column;
-        position: absolute;
+        position: fixed;
         top: 70px;
         left: 0;
         width: 100%;
-        background-color: rgba(9, 74, 52, 0.95);
+        background-color: rgba(9, 74, 52, 0.98);
         padding: 2rem 0;
         gap: 1.5rem;
         align-items: center;
         transform: translateY(-150%);
         transition: transform 0.3s ease-in-out;
-        z-index: 99;
+        z-index: 1000;
         border-bottom: 2px solid #EFBC34;
     }
 
