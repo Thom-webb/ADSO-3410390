@@ -1,0 +1,482 @@
+/* =========================================
+   01 - IMPORTACIONES Y VARIABLES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --primary-color: #094A34;
+    --secondary-color: #257657;
+    --text-color: #EFBC34;
+    --font-body: "Inter", sans-serif;
+    --font-headings: "Cinzel Decorative", serif;
+    scroll-behavior: smooth;
+}
+
+/* =========================================
+   02 - ESTILOS GLOBALES Y ESTRUCTURA
+   ========================================= */
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    background-color: #FCF4DF;
+}
+
+main {
+    min-height: 100dvh;
+}
+
+/* =========================================
+   03 - NAVBAR
+   ========================================= */
+header#navbar {
+    align-items: center;
+    background-image: url(../img/barraSup.png);
+    display: flex;
+    position: fixed;
+    background-size: cover;
+    left: 0px;
+    height: 100px;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 7rem;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+}
+
+header#navbar img.logo {
+    height: 80px;
+    filter: drop-shadow(0px 4px 6px rgba(247, 189, 1, 0.7));
+}
+
+header#navbar nav.options {
+    display: flex;
+    gap: 5rem;
+}
+
+header#navbar nav.options a:is(:link, :visited) {
+    font-size: 1.4rem;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.4s ease, color 0.4s ease, text-shadow 0.4s ease, filter 0.4s ease;
+}
+
+header#navbar nav.options a:is(:link, :visited)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background-color: #EFBC34;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.4s ease;
+    box-shadow: 0 0 8px rgba(239, 188, 52, 0.8);
+}
+
+header#navbar nav.options a:is(:link, :visited):hover {
+    transform: translateY(-6px);
+    color: #EFBC34;
+    text-shadow: 0 0 5px rgba(239, 188, 52, 0.7), 0 0 10px rgba(239, 188, 52, 0.5), 0 0 20px rgba(239, 188, 52, 0.3);
+    filter: drop-shadow(0 0 5px rgba(239, 188, 52, 0.4));
+}
+
+header#navbar nav.options a:is(:link, :visited):hover::after {
+    transform: scaleX(1);
+}
+
+/* =========================================
+   04 - BARRA AMARILLA + COLECCIONES
+   ========================================= */
+section#COLECCIONES {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+
+.barra-amarilla {
+    position: relative;
+    width: 100%;
+    height: 205px;
+    margin-top: -15px;
+    overflow: visible;
+}
+
+.barra-amarilla .barra-fondo {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 20px);
+    object-fit: fill;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.juegos {
+    position: absolute;
+    top: -57px;
+    left: 0;
+    width: 100%;
+    height: 205px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding: 0 4rem;
+    z-index: 1;
+}
+
+.juego {
+    display: block;
+    flex: 0 1 220px;
+    width: 220px;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    outline: none;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: pointer;
+}
+
+.juego img {
+    display: block;
+    width: 120%;
+    height: 110%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.juego:hover, .juego:focus-visible {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 22px rgba(239, 188, 52, 0.65);
+    z-index: 2;
+}
+
+/* =========================================
+   05 - TEMPLOS
+   ========================================= */
+section#TEMPLOS {
+    background-image: url(../img/Templos-FONDO.png);
+    background-size: 130% 130%; 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+    background-position: center 80px;
+    z-index: 10;
+
+    position: relative;
+    width: 100%;
+    padding: 80px 0 120px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+}
+
+.titulo-seccion {
+    font-family: var(--font-headings);
+    font-size: 4rem;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.templos-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+}
+
+.mapa-wrapper {
+    flex: 1;
+    overflow: hidden;
+    line-height: 0; 
+}
+
+.mapa-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.flecha-btn {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 70px;                  
+    height: 70px;                 
+    border: none;
+    cursor: pointer;
+    padding: 0;                   
+    flex-shrink: 0;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.flecha-izquierda { background-image: url('../img/Flecha.png'); }
+.flecha-izquierda:hover { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
+.flecha-derecha { background-image: url('../img/flecha2.png'); }
+.flecha-derecha:hover { transform: scale(1.15); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
+
+
+/* =========================================
+   06 - SECCIÓN VERDE (CARRUSEL DE RECETAS)
+   ========================================= */
+section#verde {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -142px; 
+    z-index: 5; 
+    width: 100%;
+    padding-bottom: 50px; 
+}
+
+.barra-verde-fondo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: block;
+    z-index: 1;
+}
+
+.titulo-recetas {
+    position: absolute;
+    top: 170px; 
+    left: 20px; 
+    font-family: var(--font-headings);
+    font-size: 3.5rem;
+    color: #257657; 
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.carrusel-recetas {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; 
+    width: 100%;
+    max-width: 1000px;
+}
+
+.carta-receta {
+    width: 250px; 
+    transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+    cursor: pointer;
+}
+
+.carta-receta img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.carta-receta:not(.activa) {
+    transform: scale(0.85); 
+    filter: brightness(0.6); 
+    opacity: 0.8;
+}
+
+.carta-receta:not(.activa):hover {
+    transform: scale(0.9); 
+    filter: brightness(0.8);
+    opacity: 1;
+}
+
+.carta-receta.activa {
+    transform: scale(1.02); 
+    z-index: 20;
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.4)); 
+}
+
+.flecha-carrusel {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    background-image: url('../img/flecha2.png'); 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+    z-index: 30;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.flecha-izq-carrusel { left: 10%; transform: translateY(-50%) scaleX(-1); }
+.flecha-der-carrusel { right: 10%; }
+.flecha-izq-carrusel:hover { transform: translateY(-50%) scaleX(-1) scale(1.2); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
+.flecha-der-carrusel:hover { transform: translateY(-50%) scale(1.2); filter: drop-shadow(0 0 10px rgba(239, 188, 52, 0.9)); }
+
+/* =========================================
+   07 - SECCIÓN FINAL (Fondo verde con Logo e Iconos)
+   ========================================= */
+section#VERDE-FINAL {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 50;
+    margin-top: -328px; /* Sube la sección para quitar el borde blanco */
+}
+
+.fondo-final-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.contenido-superpuesto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    z-index: 10;
+}
+
+.logo-final-img {
+    width: 400px; 
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 30px; 
+    filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.6)); 
+}
+
+.barra-iconos-amarilla {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; 
+    width: 100%;
+    padding: 15px 25px;
+    background-color: #EFBC34; 
+    border-radius: 12px; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+}
+
+.icono-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.icono-btn img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.icono-btn:hover {
+    transform: scale(1.2) translateY(-5px); 
+    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+/* =========================================
+   08 - MODAL DE VIDEO (COLECCIONES)
+   ========================================= */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); 
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); 
+}
+
+.modal-contenido {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background-color: #094A34; 
+    border: 4px solid #EFBC34; 
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 0 30px rgba(239, 188, 52, 0.5); 
+    animation: aparecer 0.3s ease-out;
+}
+
+@keyframes aparecer {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: #EFBC34;
+    color: #094A34;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+}
+
+.cerrar-modal:hover {
+    transform: scale(1.1) rotate(90deg);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}

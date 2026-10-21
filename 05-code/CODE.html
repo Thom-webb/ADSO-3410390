@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Legend of Zelda Chronicles</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+<body>
+    <main>
+        <!-- 01 - Navbar -->
+        <header id="navbar">
+            <img class="logo" src="img/logo.png" alt="Logo">
+
+            <nav class="options">
+                <a href="#COLECCIONES">COLECCIONES</a>
+                <a href="#TEMPLOS">TEMPLOS</a>
+                <a href="#TOP-RECETAS">TOP-RECETAS</a>
+                <a href="#SECRETO">SECRETO</a>
+            </nav>
+        </header>
+
+        <!-- 02 - About -->
+        <section id="about">
+            <img class="LINK-FONDO" src="img/Link_Epona.png" alt="Fondo de Link">
+        </section>
+
+        <!-- 03 - Barra amarilla con colecciones -->
+        <section id="COLECCIONES">
+            <div class="barra-amarilla">
+                <img class="barra-fondo" src="img/barra.png" alt="Barra amarilla">
+
+                <div class="juegos">
+                    <a href="#" class="juego" data-video="https://www.youtube.com/embed/_NElFLzgdUs">
+                        <img src="img/ocarina.png" alt="The Legend of Zelda: Ocarina of Time">
+                    </a>
+                    <a href="#" class="juego" data-video="https://www.youtube.com/embed/1VLu2HKVurg?si=fFuiZepJewkBU2R-">
+                        <img src="img/majoras.png" alt="The Legend of Zelda: Majora's Mask">
+                    </a>
+                    <a href="#" class="juego" data-video="https://www.youtube.com/embed/zw47_q9wbBE">
+                        <img src="img/btow.png" alt="The Legend of Zelda: Breath of the Wild">
+                    </a>
+                    <a href="#" class="juego" data-video="https://www.youtube.com/embed/XcwuLa-qwEw?si=tpOQM1FGujOJGWxD">
+                        <img src="img/mini.png" alt="The Legend of Zelda: Link's Awakening">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 - Templos -->
+        <section id="TEMPLOS">
+            <h2 class="titulo-seccion">TEMPLOS</h2>
+            
+            <div class="templos-contenedor">
+                <button class="flecha-btn flecha-izquierda" aria-label="Anterior"></button>
+                <div class="mapa-wrapper">
+                    <img src="img/Templos.png" alt="Mapa de templos de Hyrule" class="mapa-img">
+                </div>
+                <button class="flecha-btn flecha-derecha" aria-label="Siguiente"></button>
+            </div>
+        </section>
+
+        <!-- 05 - SECCIÓN VERDE (Carrusel de Recetas) -->
+        <section id="verde">
+            <img class="barra-verde-fondo" src="img/verdeeee.png" alt="Barra verde">
+            
+            <h2 class="titulo-recetas">TOP RECETAS</h2>
+            
+            <button class="flecha-carrusel flecha-izq-carrusel" aria-label="Anterior receta"></button>
+            
+            <div class="carrusel-recetas">
+                <div class="carta-receta">
+                    <img src="img/comida1.png" alt="Mighty Simmered Fruit">
+                </div>
+                <div class="carta-receta activa">
+                    <img src="img/comida2.png" alt="Tomato Mushroom Stew">
+                </div>
+                <div class="carta-receta">
+                    <img src="img/comida3.png" alt="Hasty Carrot Stew">
+                </div>
+            </div>
+
+            <button class="flecha-carrusel flecha-der-carrusel" aria-label="Siguiente receta"></button>
+        </section>
+
+        <!-- 06 - Sección Final (Fondo verde con Logo e Iconos) -->
+        <section id="VERDE-FINAL">
+            <img class="fondo-final-img" src="img/VERDE_FINAL.png" alt="Fondo verde final">
+            
+            <div class="contenido-superpuesto">
+                <img class="logo-final-img" src="img/logo.png" alt="The Legend of Zelda Chronicles">
+                
+                <div class="barra-iconos-amarilla">
+                    <a href="#" class="icono-btn" id="btn-llave"><img src="img/llave.png" alt="Llave"></a>
+                    <a href="#" class="icono-btn"><img src="img/config.png" alt="Configuración"></a>
+                    <a href="#" class="icono-btn"><img src="img/buscar.png" alt="Buscar"></a>
+                    <a href="#" class="icono-btn"><img src="img/escudo.png" alt="Escudo"></a>
+                    <a href="#" class="icono-btn"><img src="img/chat.png" alt="Mensajes"></a>
+                    <a href="#" class="icono-btn"><img src="img/perfil.png" alt="Perfil"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 - MODAL DE VIDEO -->
+        <div id="modal-video" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrar-modal">&times;</span>
+                <div class="video-wrapper">
+                    <iframe id="iframe-video" src="" title="Gameplay Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // --- 1. LÓGICA DEL CARRUSEL DE RECETAS ---
+            const cartas = Array.from(document.querySelectorAll('.carta-receta'));
+            const btnIzq = document.querySelector('.flecha-izq-carrusel');
+            const btnDer = document.querySelector('.flecha-der-carrusel');
+
+            function actualizarCarrusel() {
+                cartas.forEach(carta => carta.classList.remove('activa'));
+                cartas[1].classList.add('activa'); // El índice 1 es la carta del centro
+            }
+
+            btnDer.addEventListener('click', () => {
+                const primeraCarta = cartas.shift();
+                cartas.push(primeraCarta);
+                actualizarCarrusel();
+            });
+
+            btnIzq.addEventListener('click', () => {
+                const ultimaCarta = cartas.pop();
+                cartas.unshift(ultimaCarta);
+                actualizarCarrusel();
+            });
+
+            // --- 2. LÓGICA DEL MODAL DE VIDEO ---
+            const modal = document.getElementById('modal-video');
+            const iframe = document.getElementById('iframe-video');
+            const cerrarBtn = document.querySelector('.cerrar-modal');
+            const juegos = document.querySelectorAll('.juego');
+
+            juegos.forEach(juego => {
+                juego.addEventListener('click', (e) => {
+                    e.preventDefault(); // Evita que el enlace recargue la página
+                    const videoUrl = juego.getAttribute('data-video');
+                    
+                    // Añade autoplay si es de YouTube
+                    if(videoUrl.includes('youtube.com')) {
+                        iframe.src = videoUrl + "?autoplay=1";
+                    } else {
+                        iframe.src = videoUrl;
+                    }
+                    
+                    modal.style.display = 'flex'; 
+                });
+            });
+
+            // Cerrar modal con la X
+            cerrarBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                iframe.src = ""; // Detiene el video
+            });
+
+            // Cerrar modal haciendo clic fuera del recuadro
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    iframe.src = "";
+                }
+            });
+
+            // --- 3. LÓGICA DEL EASTER EGG: MÁSCARA DE MAJORA CON SONIDO ---
+            const btnLlave = document.getElementById('btn-llave');
+
+            btnLlave.addEventListener('click', (e) => {
+                e.preventDefault(); 
+
+                // Reproducir sonido (Asegúrate de tener el archivo en la ruta indicada)
+                const audio = new Audio('img/audio/risa-majora.wav'); 
+                audio.volume = 0.8; 
+                audio.play(); 
+
+                const mascara = document.createElement('img');
+                mascara.src = 'img/mascara-majora.png'; 
+                
+                mascara.style.position = 'fixed';
+                mascara.style.top = '50%';
+                mascara.style.left = '50%';
+                mascara.style.transform = 'translate(-50%, -50%) scale(0)';
+                mascara.style.zIndex = '10000'; 
+                mascara.style.width = '250px'; 
+                mascara.style.pointerEvents = 'none'; 
+                mascara.style.transition = 'all 0.5s ease-in-out';
+
+                document.body.appendChild(mascara);
+
+                setTimeout(() => {
+                    mascara.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(15deg)';
+                    mascara.style.filter = 'drop-shadow(0 0 30px rgba(255, 0, 0, 0.8))'; 
+                    
+                    let temblor = 0;
+                    const intervaloRisa = setInterval(() => {
+                        temblor++;
+                        const rotacion = temblor % 2 === 0 ? '25deg' : '5deg';
+                        mascara.style.transform = `translate(-50%, -50%) scale(1.6) rotate(${rotacion})`;
+                        
+                        if (temblor > 6) clearInterval(intervaloRisa); 
+                    }, 150);
+
+                }, 100);
+
+                setTimeout(() => {
+                    mascara.style.opacity = '0';
+                    mascara.style.transform = 'translate(-50%, -50%) scale(0) rotate(-45deg)';
+                    
+                    // Detener el audio si aún sigue sonando
+                    audio.pause();
+                    audio.currentTime = 0;
+
+                    setTimeout(() => {
+                        mascara.remove();
+                    }, 500);
+                }, 2000); 
+            });
+        });
+    </script>
+</body>
+</html>
