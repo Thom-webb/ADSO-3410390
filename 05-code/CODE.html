@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,9 @@
         <!-- 01 - Navbar -->
         <header id="navbar">
             <img class="logo" src="img/logo.png" alt="Logo">
+            
+            <!-- Botón hamburguesa para móvil -->
+            <button class="menu-toggle" aria-label="Abrir menú">☰</button>
 
             <nav class="options">
                 <a href="#COLECCIONES">COLECCIONES</a>
@@ -30,19 +33,18 @@
         <section id="COLECCIONES">
             <div class="barra-amarilla">
                 <img class="barra-fondo" src="img/barra.png" alt="Barra amarilla">
-
                 <div class="juegos">
                     <a href="#" class="juego" data-video="https://www.youtube.com/embed/_NElFLzgdUs">
-                        <img src="img/ocarina.png" alt="The Legend of Zelda: Ocarina of Time">
+                        <img src="img/ocarina.png" alt="Ocarina of Time">
                     </a>
                     <a href="#" class="juego" data-video="https://www.youtube.com/embed/1VLu2HKVurg">
-                        <img src="img/majoras.png" alt="The Legend of Zelda: Majora's Mask">
+                        <img src="img/majoras.png" alt="Majora's Mask">
                     </a>
                     <a href="#" class="juego" data-video="https://www.youtube.com/embed/zw47_q9wbBE">
-                        <img src="img/btow.png" alt="The Legend of Zelda: Breath of the Wild">
+                        <img src="img/btow.png" alt="Breath of the Wild">
                     </a>
                     <a href="#" class="juego" data-video="https://www.youtube.com/embed/XcwuLa-qwEw">
-                        <img src="img/mini.png" alt="The Legend of Zelda: Link's Awakening">
+                        <img src="img/mini.png" alt="Link's Awakening">
                     </a>
                 </div>
             </div>
@@ -51,7 +53,6 @@
         <!-- 04 - Templos -->
         <section id="TEMPLOS">
             <h2 class="titulo-seccion">TEMPLOS</h2>
-
             <div class="templos-contenedor">
                 <button class="flecha-btn flecha-izquierda" aria-label="Anterior"></button>
                 <div class="mapa-wrapper">
@@ -64,7 +65,6 @@
         <!-- 05 - SECCIÓN VERDE (Carrusel de Recetas) -->
         <section id="verde">
             <img class="barra-verde-fondo" src="img/verdeeee.png" alt="Barra verde">
-
             <h2 class="titulo-recetas">TOP RECETAS</h2>
 
             <button class="flecha-carrusel flecha-izq-carrusel" aria-label="Anterior receta"></button>
@@ -87,10 +87,8 @@
         <!-- 06 - Sección Final (Fondo verde con Logo e Iconos) -->
         <section id="VERDE-FINAL">
             <img class="fondo-final-img" src="img/VERDE_FINAL.png" alt="Fondo verde final">
-
             <div class="contenido-superpuesto">
                 <img class="logo-final-img" src="img/logo.png" alt="The Legend of Zelda Chronicles">
-
                 <div class="barra-iconos-amarilla">
                     <a href="#" class="icono-btn" id="btn-llave"><img src="img/llave.png" alt="Llave"></a>
                     <a href="#" class="icono-btn"><img src="img/config.png" alt="Configuración"></a>
@@ -111,12 +109,19 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <!-- SCRIPTS -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            /* --- MENÚ HAMBURGUESA --- */
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navOptions = document.querySelector('header#navbar nav.options');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navOptions.classList.toggle('open');
+                });
+            }
 
             /* --- 1. CARRUSEL DE RECETAS --- */
             const cartas = Array.from(document.querySelectorAll('.carta-receta'));
@@ -150,9 +155,7 @@
                 juego.addEventListener('click', (e) => {
                     e.preventDefault();
                     const videoUrl = juego.getAttribute('data-video');
-                    iframe.src = videoUrl.includes('youtube.com')
-                        ? videoUrl + "?autoplay=1"
-                        : videoUrl;
+                    iframe.src = videoUrl.includes('youtube.com') ? videoUrl + "?autoplay=1" : videoUrl;
                     modal.style.display = 'flex';
                 });
             });
@@ -169,48 +172,33 @@
                 }
             });
 
-            /* --- 3. EASTER EGG: MÁSCARA DE MAJORA CON SONIDO --- */
+            /* --- 3. EASTER EGG: MÁSCARA DE MAJORA --- */
             const btnLlave = document.getElementById('btn-llave');
-
-            // Rutas exactas según tu estructura de carpetas
             const RUTA_AUDIO   = 'img/audio/risa-majora.wav';
             const RUTA_MASCARA = 'img/mascara-majora.png';
 
             btnLlave.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                // 1. Reproducir Audio
                 const audio = new Audio(RUTA_AUDIO);
                 audio.volume = 0.8;
-                audio.play().catch(err => {
-                    console.error('❌ No se pudo reproducir el audio. Revisa la ruta:', RUTA_AUDIO, err);
-                });
+                audio.play().catch(err => console.error('❌ Audio error:', err));
 
-                // 2. Crear y mostrar Máscara
                 const mascara = document.createElement('img');
                 mascara.src = RUTA_MASCARA;
                 mascara.alt = 'Majora';
-                mascara.onerror = () => {
-                    console.error('❌ No se encontró la imagen en:', RUTA_MASCARA);
-                };
-
-                // Ajuste responsive para el tamaño de la máscara
                 mascara.style.position = 'fixed';
                 mascara.style.top = '50%';
                 mascara.style.left = '50%';
                 mascara.style.transform = 'translate(-50%, -50%) scale(0)';
                 mascara.style.zIndex = '10000';
-                mascara.style.width = window.innerWidth < 768 ? '180px' : '250px'; // 👈 Adaptación a móvil
+                mascara.style.width = window.innerWidth < 768 ? '180px' : '250px';
                 mascara.style.pointerEvents = 'none';
                 mascara.style.transition = 'all 0.5s ease-in-out';
-
                 document.body.appendChild(mascara);
 
-                // 3. Animación de aparición y temblor
                 setTimeout(() => {
                     mascara.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(15deg)';
                     mascara.style.filter = 'drop-shadow(0 0 30px rgba(255, 0, 0, 0.8))';
-
                     let temblor = 0;
                     const intervaloRisa = setInterval(() => {
                         temblor++;
@@ -220,17 +208,12 @@
                     }, 150);
                 }, 100);
 
-                // 4. Desaparecer y detener audio
                 setTimeout(() => {
                     mascara.style.opacity = '0';
                     mascara.style.transform = 'translate(-50%, -50%) scale(0) rotate(-45deg)';
-                    
                     audio.pause();
                     audio.currentTime = 0;
-                    
-                    setTimeout(() => {
-                        mascara.remove();
-                    }, 500);
+                    setTimeout(() => mascara.remove(), 500);
                 }, 2000);
             });
         });
