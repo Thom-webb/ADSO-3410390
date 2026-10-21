@@ -476,3 +476,196 @@ section#VERDE-FINAL {
     height: 100%;
     border: none;
 }
+
+/* =========================================
+   09 - RESPONSIVE (TABLET Y MÓVIL)
+   ========================================= */
+
+/* --- TABLETS (Pantallas de hasta 1024px) --- */
+@media (max-width: 1024px) {
+    header#navbar {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    header#navbar nav.options {
+        gap: 2rem;
+    }
+    header#navbar nav.options a:is(:link, :visited) {
+        font-size: 1.1rem;
+    }
+
+    .juegos {
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    .juego {
+        flex: 0 1 160px;
+        width: 160px;
+    }
+
+    .titulo-seccion {
+        font-size: 3rem;
+    }
+    .flecha-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    section#verde {
+        margin-top: -80px;
+    }
+    .titulo-recetas {
+        font-size: 2.5rem;
+        top: 100px;
+        left: 15px;
+    }
+    .carrusel-recetas {
+        gap: 10px;
+    }
+    .carta-receta {
+        width: 180px;
+    }
+    .flecha-izq-carrusel { left: 2%; }
+    .flecha-der-carrusel { right: 2%; }
+
+    section#VERDE-FINAL {
+        margin-top: -200px;
+    }
+    .logo-final-img {
+        width: 300px;
+    }
+    .barra-iconos-amarilla {
+        padding: 10px 15px;
+    }
+    .icono-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* --- MÓVILES (Pantallas de hasta 768px) --- */
+@media (max-width: 768px) {
+    header#navbar {
+        height: 70px;
+        justify-content: center;
+    }
+    header#navbar img.logo {
+        height: 50px;
+    }
+    header#navbar nav.options {
+        display: none; 
+    }
+
+    section#about {
+        margin-top: 70px; 
+    }
+
+    section#COLECCIONES {
+        margin-top: 20px;
+    }
+    .barra-amarilla {
+        height: auto;
+        padding: 20px 0;
+    }
+    .barra-amarilla .barra-fondo {
+        display: none; 
+    }
+    .juegos {
+        position: relative;
+        top: 0;
+        height: auto;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+    .juego {
+        flex: 0 1 130px;
+        width: 130px;
+        border-radius: 15px;
+    }
+
+    section#TEMPLOS {
+        padding: 40px 0 60px 0;
+        background-position: center top;
+    }
+    .titulo-seccion {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+    .templos-contenedor {
+        padding: 0 10px;
+        gap: 10px;
+    }
+    .flecha-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    section#verde {
+        margin-top: 0;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: #257657; 
+    }
+    .barra-verde-fondo {
+        display: none; 
+    }
+    .titulo-recetas {
+        position: relative;
+        top: 0;
+        left: 0;
+        font-size: 2rem;
+        color: #EFBC34; 
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .carrusel-recetas {
+        position: relative;
+        top: 0;
+        transform: none;
+        flex-wrap: wrap; 
+        padding: 0 10px;
+    }
+    .carta-receta {
+        width: 120px; 
+    }
+    .carta-receta.activa {
+        transform: scale(1); 
+    }
+    .flecha-carrusel {
+        display: none; 
+    }
+
+    section#VERDE-FINAL {
+        margin-top: 0;
+        background-color: #257657;
+        padding: 40px 0;
+    }
+    .fondo-final-img {
+        display: none; 
+    }
+    .contenido-superpuesto {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        padding: 0 15px;
+    }
+    .logo-final-img {
+        width: 200px;
+        margin-bottom: 20px;
+    }
+    .barra-iconos-amarilla {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 15px;
+    }
+    .icono-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .modal-contenido {
+        width: 95%;
+        padding: 10px;
+    }
+}

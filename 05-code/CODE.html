@@ -194,12 +194,13 @@
                     console.error('❌ No se encontró la imagen en:', RUTA_MASCARA);
                 };
 
+                // Ajuste responsive para el tamaño de la máscara
                 mascara.style.position = 'fixed';
                 mascara.style.top = '50%';
                 mascara.style.left = '50%';
                 mascara.style.transform = 'translate(-50%, -50%) scale(0)';
                 mascara.style.zIndex = '10000';
-                mascara.style.width = '250px';
+                mascara.style.width = window.innerWidth < 768 ? '180px' : '250px'; // 👈 Adaptación a móvil
                 mascara.style.pointerEvents = 'none';
                 mascara.style.transition = 'all 0.5s ease-in-out';
 
